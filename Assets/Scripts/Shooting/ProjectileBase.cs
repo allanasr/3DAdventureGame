@@ -7,7 +7,7 @@ public class ProjectileBase : MonoBehaviour
     public float timeToDestroy = 2f;
     public float speed = 50f;
 
-    public int damageAmount = 1;
+    public int damageAmount = 5;
 
     private void Awake()
     {
@@ -21,7 +21,11 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        var damageable = collision.transform.GetComponent<IDamageable>();
+
+        if (damageable != null) damageable.Damage(damageAmount);
+
+        Destroy(gameObject);
     }
 
 }
