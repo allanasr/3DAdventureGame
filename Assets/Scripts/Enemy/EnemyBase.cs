@@ -10,6 +10,8 @@ public class EnemyBase : MonoBehaviour , IDamageable
     public Collider collider;
     public ParticleSystem particleSystem;
 
+    public bool lookAtPlayer = false;
+
     [SerializeField] private AnimationBase animationBase;
     [SerializeField] private float currentLife;
 
@@ -18,9 +20,16 @@ public class EnemyBase : MonoBehaviour , IDamageable
     public Ease ease = Ease.OutBack;
     public bool startWithSpawnAnimation = true;
 
+    private Player player;
+
     private void Awake()
     {
         Init();
+    }
+
+    private void Start()
+    {
+        player = FindObjectOfType<Player>();
     }
 
     protected void ResetLife()
@@ -65,8 +74,33 @@ public class EnemyBase : MonoBehaviour , IDamageable
         animationBase.PlayerAnimationByTrigger(animationType);
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, Vector3 dir)
     {
         OnDamage(damage);
+        transform.DOMove(transform.position - dir, .1f);
+    }
+
+    public void Damage(float damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Player p = collision.transform.GetComponent<Player>();
+
+        if(p != null)
+        {
+            p.Damage(1);
+        }
+
+    }
+
+    protected virtual void Update()
+    {
+        if (lookAtPlayer)
+        {
+            transform.LookAt(player.transform.position);
+        }
     }
 }

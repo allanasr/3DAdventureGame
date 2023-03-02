@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     public Animator animator;
 
@@ -18,6 +18,17 @@ public class Player : MonoBehaviour
     private float vSpeed = 0f;
     private float verticalAxis;
     private float horizontalAxis;
+
+    public List<FlashColor> flashColors;
+    public void Damage(float damage, Vector3 dir)
+    {
+        Damage(damage);
+    }
+
+    public void Damage(float damage)
+    {
+        flashColors.ForEach(i => i.Flash());
+    }
 
     private void Start()
     {

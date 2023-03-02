@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 8490879380974438857}
   - component: {fileID: 3006795218428280518}
   m_Layer: 0
-  m_Name: ProjectilePrefab
+  m_Name: ProjectilePrefabEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   timeToDestroy: 2
   speed: 50
   tagsToHit:
-  - Enemy
+  - Player
   damageAmount: 5
 --- !u!54 &3006795218428280518
 Rigidbody:

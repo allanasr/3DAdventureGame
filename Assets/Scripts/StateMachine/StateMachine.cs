@@ -24,12 +24,12 @@ public class StateMachine<T> where T : System.Enum
         dictionaryState.Add(typeEnum, stateBase);
     }
 
-    public void SwitchState(T state)
+    public void SwitchState(T state, object o = null)
     {
         if (currentState != null) currentState.OnStateExit();
 
         currentState = dictionaryState[state];
-        currentState.OnStateEnter();
+        currentState.OnStateEnter(o);
     }
 
     private void Update()

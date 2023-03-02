@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 8389362908673997014}
   - component: {fileID: 8343235193050147983}
   m_Layer: 0
-  m_Name: PFB_MonsterSlime_03
+  m_Name: PFB_MonsterSlime_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +851,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ef3831e904619c44caa2a4966244ba51, type: 2}
+  - {fileID: 2100000, guid: 76ace8e5f96554c4fa3d0978f9105215, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
