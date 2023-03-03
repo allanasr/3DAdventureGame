@@ -5,7 +5,7 @@ using System.Linq;
 
 public class GunShootLimit : GunBase
 {
-    public List<UIFillUpdater> uIGunUpdaters;
+    public UIFillUpdater uIGunUpdater;
 
     public int maxShots = 5;
     public float timeToReload = 1f;
@@ -59,7 +59,7 @@ public class GunShootLimit : GunBase
         while (time < timeToReload)
         {
             time += Time.deltaTime;
-            uIGunUpdaters.ForEach(i => i.UpdateValue(time/timeToReload));
+            uIGunUpdater.UpdateValue(time/timeToReload);
             yield return new WaitForEndOfFrame();
         }
 
@@ -69,11 +69,11 @@ public class GunShootLimit : GunBase
 
     private void UpdateUI()
     {
-        uIGunUpdaters.ForEach(i => i.UpdateValue(maxShots, currentShots));
+        uIGunUpdater. UpdateValue(maxShots, currentShots);
     }
 
     private void GetAllUIs()
     {
-        uIGunUpdaters = GameObject.FindObjectsOfType<UIFillUpdater>().ToList();
+        uIGunUpdater = GameObject.FindGameObjectWithTag("GunUI").GetComponent<UIFillUpdater>();
     }
 }
