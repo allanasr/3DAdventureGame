@@ -9,7 +9,7 @@ namespace Singleton
     {
         public static Type Instance;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if (!Instance)
             {
