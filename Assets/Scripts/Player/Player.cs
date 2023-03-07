@@ -25,6 +25,7 @@ public class Player : Singleton<Player> //, IDamageable
     public HealthBase healthBase;
     public List<FlashColor> flashColors;
 
+    [SerializeField] private ChangeClothes changeClothes;
     private void OnValidate()
     {
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
@@ -124,5 +125,30 @@ public class Player : Singleton<Player> //, IDamageable
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
         }
+    }
+
+    public void ChangeSpeed(float speed, float duration)
+    {
+        StartCoroutine(ChangeSpeedCoroutine(speed, duration));
+    }
+
+    IEnumerator ChangeSpeedCoroutine(float localSpeed, float duration)
+    {
+        var defaultSpeed = speed;
+        speed = localSpeed;
+        yield return new WaitForSeconds(duration);
+        speed = defaultSpeed;
+    }
+    
+    public void ChangeTexture(ClothesSetup setup, float duration)
+    {
+        StartCoroutine(ChangeSpeedCoroutine(setup, duration));
+    }
+
+    IEnumerator ChangeSpeedCoroutine(ClothesSetup setup, float duration)
+    {
+        changeClothes.ChangeTexture(setup);
+        yield return new WaitForSeconds(duration);
+        changeClothes.ResetTexture();
     }
 }

@@ -15,6 +15,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     public List<UIFillUpdater> uiFillUpdater;
 
+    public float damageMultiplier = 1f;
     private void Awake()
     {
         Init();
@@ -45,7 +46,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     }
     public void Damage(float f)
     {
-        currentLife -= f;
+        currentLife -= f * damageMultiplier;
 
         if (currentLife <= 0)
             Kill();
@@ -64,5 +65,17 @@ public class HealthBase : MonoBehaviour, IDamageable
         {
             uiFillUpdater.ForEach(i => i.UpdateValue((float)currentLife / startLife));
         }
+    }
+
+    public void ChangeDamageMultiplier(float multiplier, float duration)
+    {
+        StartCoroutine(ChangeDamageMultiplierCoroutine(multiplier, duration));
+    }
+
+    IEnumerator ChangeDamageMultiplierCoroutine(float multiplier, float duration)
+    {
+        damageMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        damageMultiplier = 1;
     }
 }
