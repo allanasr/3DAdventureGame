@@ -15,6 +15,8 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     private GunBase primaryGun;
     private GunBase secondaryGun;
 
+    public FlashColor flashColor;
+
     protected override void Init()
     {
         base.Init();
@@ -45,13 +47,13 @@ public class PlayerAbilityShoot : PlayerAbilityBase
         primaryGun = currentGun = Instantiate(gunBases[0], gunPostion);
         secondaryGun = Instantiate(gunBases[1], gunPostion);
 
-        //secondaryGun.gameObject.SetActive(false);
 
         UpdateGunPositions();
     }
     private void Shoot()
     {
         currentGun.StartShoot();
+        flashColor?.Flash();
     }
     private void CancelShoot()
     {

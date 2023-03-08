@@ -17,6 +17,7 @@ public class Player : Singleton<Player> //, IDamageable
     public float runSpeed = 1.5f;
 
     private bool alive = true;
+    private bool jumping = false;
 
     private float vSpeed = 0f;
     private float verticalAxis;
@@ -90,10 +91,17 @@ public class Player : Singleton<Player> //, IDamageable
 
         if(characterController.isGrounded)
         {
+            if(jumping)
+            {
+                jumping = false;
+                animator.SetTrigger("Land");
+            }
             vSpeed = 0;
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) && !jumping)
             {
                 vSpeed = jumpForce;
+                jumping = true;
+                animator.SetTrigger("Jump");
             }
         }
 
