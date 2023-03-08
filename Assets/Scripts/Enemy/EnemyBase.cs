@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 public class EnemyBase : MonoBehaviour , IDamageable
 {
     public float startLife = 10f;
@@ -22,6 +23,7 @@ public class EnemyBase : MonoBehaviour , IDamageable
 
     private Player player;
 
+    public UnityEvent onKillEvent;
     private void Awake()
     {
         Init();
@@ -51,6 +53,7 @@ public class EnemyBase : MonoBehaviour , IDamageable
         if (collider != null) collider.enabled = false;
         Destroy(gameObject, 3f);
         PlayAnimationByTrigger(AnimationType.DEATH);
+        onKillEvent?.Invoke();
     }
 
     public void OnDamage(float f)

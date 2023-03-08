@@ -16,8 +16,14 @@ public class CollectableManager : Singleton<CollectableManager>
     private void Start()
     {
         Reset();
+        LoadItensFromSave();
     }
 
+    private void LoadItensFromSave()
+    {
+        AddByType(ItemType.COIN, (int) SaveManager.Instance.setup.coins);
+        AddByType(ItemType.LIFE_PACK, (int) SaveManager.Instance.setup.health);
+    }
     private void Reset()
     {
         foreach(var i in itemSetup)
