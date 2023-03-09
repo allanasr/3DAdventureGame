@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb1f24007f1d334da2f37064de9fa34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxType: 1
   itemType: 0
   particle: {fileID: 0}
   audioSource: {fileID: 0}

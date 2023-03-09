@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class ChestBase : MonoBehaviour
 {
+    public SFXType sFXType;
     public Animator animator;
     public string triggerOpen = "Open";
 
@@ -35,6 +36,7 @@ public class ChestBase : MonoBehaviour
 
         animator.SetTrigger(triggerOpen);
         chestIsOpened = true;
+        Play();
 
         HideNotification();
         Invoke(nameof(ShowItem), 1f);
@@ -50,6 +52,10 @@ public class ChestBase : MonoBehaviour
         }
     }
 
+    private void Play()
+    {
+        SFXPool.Instance.Play(sFXType);
+    }
     private void OnTriggerExit(Collider other)
     {
         Player p = other.transform.GetComponent<Player>();

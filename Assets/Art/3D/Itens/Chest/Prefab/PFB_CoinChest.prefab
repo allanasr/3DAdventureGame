@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97faa45378654374d93b0d6924eabe87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sFXType: 2
   animator: {fileID: 0}
   triggerOpen: Open
   notification: {fileID: 0}

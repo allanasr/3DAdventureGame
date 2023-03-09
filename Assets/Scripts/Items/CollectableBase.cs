@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CollectableBase : MonoBehaviour
 {
+    public SFXType sfxType;
     public ItemType itemType;
     public ParticleSystem particle;
 
@@ -34,8 +35,15 @@ public class CollectableBase : MonoBehaviour
         coin.SetActive(false);
         OnCollect();
     }
+
+    private void PlaySfx()
+    {
+        SFXPool.Instance.Play(sfxType);
+    }
     protected virtual void OnCollect()
     {
+        if (sfxType == SFXType.NONE) return;
+        PlaySfx();
         if(particle != null) particle.Play();
         if (audioSource != null) audioSource.Play();
         CollectableManager.Instance.AddByType(itemType);

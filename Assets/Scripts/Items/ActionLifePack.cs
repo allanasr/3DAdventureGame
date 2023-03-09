@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ActionLifePack : MonoBehaviour
 {
+    public SFXType SFXType;
     public SOInt sOInt;
 
     private void Start()
@@ -21,11 +22,16 @@ public class ActionLifePack : MonoBehaviour
         }
     }
 
+    private void Play()
+    {
+        SFXPool.Instance.Play(SFXType);
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
             RecoverLife();
+            Play();
         }
     }
 }
